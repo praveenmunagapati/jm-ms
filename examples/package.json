@@ -1,0 +1,12 @@
+{
+  "name": "examples",
+  "version": "0.0.0",
+  "description": "examples for jm-ms",
+  "author": {
+    "name": "Jeff YU"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jm-ms": "*"
+  }
+}
