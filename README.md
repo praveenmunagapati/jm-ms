@@ -50,7 +50,7 @@ This will display:
 
 ### Http
 
-Simple example, included as `examples/http.js`:
+Http example, included as `examples/http.js`:
 
 ```js
 jm.ms.server(app, {
@@ -76,7 +76,7 @@ It'll add create a web client and do a request to the server.
 
 ### Websocket
 
-Simple example, included as `examples/ws.js`:
+Websocket example, included as `examples/ws.js`:
 
 ```js
 jm.ms.server(app, {
@@ -104,7 +104,7 @@ It'll add create a websocket client and do a request to the server.
 
 ### Filter
 
-Simple example, included as `examples/filter.js`:
+Filter example, included as `examples/filter.js`:
 
 ## Contributors
 
