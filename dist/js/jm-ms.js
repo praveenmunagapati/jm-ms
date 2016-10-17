@@ -1,5 +1,5 @@
 var jm = jm || {};
-if (typeof module !== 'undefined' && module.exports) {
+if((typeof exports !== 'undefined' && typeof module !== 'undefined')){
     jm = require('jm-core');
 }
 
@@ -16,7 +16,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
 
 var jm = jm || {};
-if (typeof module !== 'undefined' && module.exports) {
+if((typeof exports !== 'undefined' && typeof module !== 'undefined')){
     jm = require('jm-core');
 }
 
@@ -584,7 +584,7 @@ if((typeof exports !== 'undefined' && typeof module !== 'undefined')){
 })();
 
 var jm = jm || {};
-if (typeof module !== 'undefined' && module.exports) {
+if((typeof exports !== 'undefined' && typeof module !== 'undefined')){
     jm = require('jm-core');
 }
 
@@ -1202,6 +1202,10 @@ var WebSocket = WebSocket || null;
                     opts.id = id;
                 }
                 ws.send(JSON.stringify(opts));
+            },
+
+            close: function() {
+                ws.close();
             }
         };
         jm.enableEvent(client);
@@ -1227,7 +1231,7 @@ var WebSocket = WebSocket || null;
                     delete cbs[json.id];
                 }
             }
-        }
+        };
 
         var uri = opts.uri || 'ws://127.0.0.1:' + defaultPort;
         var path = jm.ms.utils.getUriPath(uri);
@@ -1266,7 +1270,6 @@ var WebSocket = WebSocket || null;
                     reconncetTimer = setTimeout(function() {
                         connect();
                     }, reconnectionDelay);
-                    reconnectionDelay *= 2;
                 }
             };
             var onerror = function(event) {
