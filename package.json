@@ -1,6 +1,6 @@
 {
   "name": "jm-ms",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "MicroService lib for node.js",
   "main": "./lib/index",
   "scripts": {
