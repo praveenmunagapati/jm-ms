@@ -1,6 +1,6 @@
 {
   "name": "jm-ms",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "MicroService lib for node.js",
   "main": "./lib/index",
   "scripts": {
@@ -23,11 +23,8 @@
   },
   "homepage": "https://github.com/jm-root/jm-ms",
   "dependencies": {
-    "jm-core": "*",
-    "jm-ajax": "*",
-    "jm-ms-core": "*",
-    "jm-ms-ws": "*",
-    "jm-ms-http": "*"
+    "jm-ms-ws": "~0",
+    "jm-ms-http": "~0"
   },
   "devDependencies": {
       "bluebird": "*",
