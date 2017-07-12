@@ -1,13 +1,13 @@
-var jm = jm || {};
 if (typeof module !== 'undefined' && module.exports) {
-    jm = require('../lib');
+    require('../lib');
+    jm.use(require('jm-log4js'));
     Promise = require('bluebird');
 }
 
 (function(){
     var ms = jm.ms;
     var logger = jm.logger;
-    var utils = ms.utils;
+    var utils = jm.utils;
     var pathToRegexp = ms.pathToRegexp;
     var app = ms();
 

@@ -1,7 +1,6 @@
-jm-ms - a MicroService lib
-===========================
+# jm-ms
 
-This is a MicroService lib for node.js.
+MicroService lib, light and fast
 
 Install with:
 

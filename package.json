@@ -1,7 +1,7 @@
 {
   "name": "jm-ms",
-  "version": "0.0.19",
-  "description": "MicroService lib for node.js",
+  "version": "1.0.0",
+  "description": "MicroService lib, light and fast",
   "main": "./lib/index",
   "scripts": {
     "test": "node test"
@@ -23,19 +23,32 @@
   },
   "homepage": "https://github.com/jm-root/jm-ms",
   "dependencies": {
-    "jm-ms-ws": "~0",
-    "jm-ms-http": "~0"
+    "jm-log4js": "^1.1.1",
+    "jm-ms-core": "^1.0.1",
+    "jm-ms-http": "^1.0.1",
+    "jm-ms-ws": "^1.0.0"
   },
   "devDependencies": {
-      "bluebird": "*",
-      "jshint": "*",
-      "gulp": ">=3.5.6",
-      "gulp-clean": ">=0.3.1",
-      "gulp-concat": ">=2.2.0",
-      "gulp-jshint": ">=1.5.1",
-      "gulp-rename": ">=1.2.0",
-      "gulp-sequence": ">=0.3.0",
-      "gulp-uglify": ">=0.3.1",
-      "gulp-util": ">=2.2.14"
+    "babel-cli": "^6.24.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.5.1",
+    "benchmark": "^2.1.4",
+    "bluebird": "^3.5.0",
+    "chai": "^4.0.0",
+    "eslint-config-google": "^0.7.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sequence": "^0.4.6",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "jshint": "^2.9.4",
+    "mocha": "^3.4.2"
   }
 }
