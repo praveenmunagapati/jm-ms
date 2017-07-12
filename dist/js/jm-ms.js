@@ -27,7 +27,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 ;
 module.exports = exports['default'];
-},{"jm-ms-core":4,"jm-ms-http/lib/browser":15,"jm-ms-ws/lib/browser":23}],2:[function(require,module,exports){
+},{"jm-ms-core":4,"jm-ms-http/lib/browser":17,"jm-ms-ws/lib/browser":26}],2:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -658,7 +658,7 @@ if (typeof global !== 'undefined' && global) {
 exports.default = Root;
 module.exports = exports['default'];
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./err":3,"./router":6,"./utils":7,"jm-err":8,"jm-event":9,"jm-module":10}],5:[function(require,module,exports){
+},{"./err":3,"./router":6,"./utils":7,"jm-err":8,"jm-event":11,"jm-module":12}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -825,7 +825,7 @@ var Route = function () {
 
 exports.default = Route;
 module.exports = exports['default'];
-},{"path-to-regexp":12}],6:[function(require,module,exports){
+},{"path-to-regexp":14}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1272,7 +1272,7 @@ var Router = function () {
 
 exports.default = Router;
 module.exports = exports['default'];
-},{"./route":5,"./utils":7,"jm-err":8,"jm-event":9}],7:[function(require,module,exports){
+},{"./route":5,"./utils":7,"jm-err":8,"jm-event":11}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1390,17 +1390,19 @@ utils.preRequest = function (uri, type, data, params, timeout, cb) {
 
 exports.default = utils;
 module.exports = exports['default'];
-},{"jm-utils":11}],8:[function(require,module,exports){
+},{"jm-utils":13}],8:[function(require,module,exports){
 (function (global){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-/**
- * err module.
- * @module err
- */
+
+var _locale = require('./locale');
+
+var _locale2 = _interopRequireDefault(_locale);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * common error defines
@@ -1452,6 +1454,16 @@ var Err = {
         msg: 'Not Ready'
     },
 
+    FA_NOTEXISTS: {
+        err: 9,
+        msg: 'Not Exists'
+    },
+
+    FA_EXISTS: {
+        err: 8,
+        msg: 'Already Exists'
+    },
+
     OK: {
         err: 200,
         msg: 'OK'
@@ -1486,7 +1498,12 @@ var Err = {
         err: 503,
         msg: 'Service Unavailable'
     }
-};
+}; /**
+    * err module.
+    * @module err
+    */
+
+Err.t = _locale2.default;
 
 /**
  * return message from template
@@ -1600,9 +1617,66 @@ if (typeof global !== 'undefined' && global) {
 exports.default = $;
 module.exports = exports['default'];
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],9:[function(require,module,exports){
+},{"./locale":9}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (msg, lng) {
+    if (!lng || !lngs[lng]) return null;
+    return lngs[lng][msg];
+};
+
+var _zh_CN = require('./zh_CN');
+
+var _zh_CN2 = _interopRequireDefault(_zh_CN);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var lngs = {
+    zh_CN: _zh_CN2.default
+};
+
+/**
+ * translate
+ * @param {string} msg - msg to be translate
+ * @param {string} lng - language
+ * @return {String | null}
+ */
+;
+module.exports = exports['default'];
+},{"./zh_CN":10}],10:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    'Success': '成功',
+    'Fail': '失败',
+    'System Error': '系统错误',
+    'Network Error': '网络错误',
+    'Parameter Error': '参数错误',
+    'Busy': '忙',
+    'Time Out': '超时',
+    'Abort': '中止',
+    'Not Ready': '未准备好',
+    'Not Exists': '不存在',
+    'Already Exists': '已存在',
+    'OK': 'OK',
+    'Bad Request': '错误请求',
+    'Unauthorized': '未验证',
+    'Forbidden': '无权限',
+    'Not Found': '未找到',
+    'Internal Server Error': '服务器内部错误',
+    'Service Unavailable': '无效服务'
+};
+module.exports = exports['default'];
+},{}],11:[function(require,module,exports){
 module.exports=require(2)
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1792,7 +1866,7 @@ if (typeof global !== 'undefined' && global) {
 exports.default = $;
 module.exports = exports['default'];
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1867,7 +1941,7 @@ if (typeof global !== 'undefined' && global) {
 exports.default = $;
 module.exports = exports['default'];
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 var isarray = require('isarray')
 
 /**
@@ -2295,12 +2369,12 @@ function pathToRegexp (path, keys, options) {
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
 
-},{"isarray":13}],13:[function(require,module,exports){
+},{"isarray":15}],15:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2321,7 +2395,7 @@ var client = (0, _fnclient2.default)(_browser2.default);
 
 exports.default = client;
 module.exports = exports['default'];
-},{"../fnclient":16,"jm-ajax/lib/browser":17}],15:[function(require,module,exports){
+},{"../fnclient":18,"jm-ajax/lib/browser":19}],17:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -2368,7 +2442,7 @@ $.client = _client2.default;
 exports.default = $;
 module.exports = exports['default'];
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./client":14}],16:[function(require,module,exports){
+},{"./client":16}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2430,7 +2504,7 @@ var fnclient = function fnclient(ajax) {
 
 exports.default = fnclient;
 module.exports = exports['default'];
-},{"jm-event":2,"jm-ms-core/lib/utils":7}],17:[function(require,module,exports){
+},{"jm-event":2,"jm-ms-core/lib/utils":7}],19:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -2578,7 +2652,7 @@ if (typeof global !== 'undefined' && global) {
 exports.default = $;
 module.exports = exports['default'];
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./enableajax":18,"jm-err":20}],18:[function(require,module,exports){
+},{"./enableajax":20,"jm-err":21}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2651,250 +2725,33 @@ var logger = _jmLogger2.default.getLogger('jm:ajax');
  */
 ;
 module.exports = exports['default'];
-},{"jm-err":20,"jm-logger":21}],19:[function(require,module,exports){
+},{"jm-err":21,"jm-logger":24}],21:[function(require,module,exports){
+module.exports=require(8)
+},{"./locale":22}],22:[function(require,module,exports){
+module.exports=require(9)
+},{"./zh_CN":23}],23:[function(require,module,exports){
+module.exports=require(10)
+},{}],24:[function(require,module,exports){
+(function (global){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 /**
- * err module.
- * @module err
+ * logger module.
+ * @module logger
  */
 
-/**
- * common error defines
- *
- */
-var Err = {
-    SUCCESS: {
-        err: 0,
-        msg: 'Success'
-    },
-
-    FAIL: {
-        err: 1,
-        msg: 'Fail'
-    },
-
-    FA_SYS: {
-        err: 2,
-        msg: 'System Error'
-    },
-
-    FA_NETWORK: {
-        err: 3,
-        msg: 'Network Error'
-    },
-
-    FA_PARAMS: {
-        err: 4,
-        msg: 'Parameter Error'
-    },
-
-    FA_BUSY: {
-        err: 5,
-        msg: 'Busy'
-    },
-
-    FA_TIMEOUT: {
-        err: 6,
-        msg: 'Time Out'
-    },
-
-    FA_ABORT: {
-        err: 7,
-        msg: 'Abort'
-    },
-
-    FA_NOTREADY: {
-        err: 8,
-        msg: 'Not Ready'
-    },
-
-    OK: {
-        err: 200,
-        msg: 'OK'
-    },
-
-    FA_BADREQUEST: {
-        err: 400,
-        msg: 'Bad Request'
-    },
-
-    FA_NOAUTH: {
-        err: 401,
-        msg: 'Unauthorized'
-    },
-
-    FA_NOPERMISSION: {
-        err: 403,
-        msg: 'Forbidden'
-    },
-
-    FA_NOTFOUND: {
-        err: 404,
-        msg: 'Not Found'
-    },
-
-    FA_INTERNALERROR: {
-        err: 500,
-        msg: 'Internal Server Error'
-    },
-
-    FA_UNAVAILABLE: {
-        err: 503,
-        msg: 'Service Unavailable'
-    }
-};
-
-/**
- * return message from template
- *
- * ```javascript
- * errMsg('sampe ${name} ${value}', {name: 'jeff', value: 123});
- * // return 'sample jeff 123'
- * ```
- *
- * @param {String} msg message template
- * @param {Object} opts params
- * @return {String} final message
- */
-var errMsg = function errMsg(msg, opts) {
-    if (opts) {
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-            for (var _iterator = Object.keys(opts)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var key = _step.value;
-
-                msg = msg.split('${' + key + '}').join(opts[key]);
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-    }
-    return msg;
-};
-
-/**
- * return an Error Object
- * @param {Object|String} E Err object or a message template
- * @param {Object} [opts] params
- * @return {Error}
- */
-var err = function err(E, opts) {
-    if (typeof E === 'string') {
-        E = {
-            msg: E
-        };
-    }
-    var msg = errMsg(E.msg, opts);
-    var e = new Error(msg);
-    E.err && (e.code = E.err);
-    return e;
-};
-
-/**
- * enable Err Object, errMsg and err function for obj
- * @param {Object} obj target object
- * @param {String} [name] name to bind
- * @return {boolean}
- */
-var enableErr = function enableErr(obj) {
-    var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Err';
-
-    if (obj[name]) return false;
-    obj[name] = Err;
-    obj.err = err;
-    obj.errMsg = errMsg;
-    return true;
-};
-
-/**
- * disable Err Object, errMsg and err function for obj
- * @param {Object} obj target object
- * @param {String} [name] name to bind
- */
-var disableErr = function disableErr(obj) {
-    var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Err';
-
-    if (!obj[name]) return;
-    delete obj[name];
-    delete obj.err;
-    delete obj.errMsg;
-};
-
-/**
- * module usable
- * @param {Object} obj target object
- * @param {String} [name] name to bind
- * @return {{name: string, unuse: unuse}}
- */
-var moduleErr = function moduleErr(obj) {
-    var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Err';
-
-    enableErr(obj, name);
-
-    return {
-        name: name,
-        unuse: function unuse(obj) {
-            disableErr(obj, name);
-        }
-    };
-};
-
-exports.default = {
-    Err: Err,
-    errMsg: errMsg,
-    err: err,
-    enableErr: enableErr,
-    disableErr: disableErr,
-    moduleErr: moduleErr
-};
-module.exports = exports['default'];
-},{}],20:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _err = require('./err');
-
-var _err2 = _interopRequireDefault(_err);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _err2.default;
-module.exports = exports['default'];
-},{"./err":19}],21:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 var getLogger = function getLogger(loggerCategoryName) {
     console.debug || (console.debug = console.log);
     return console;
 };
 
-var moduleLogger = function moduleLogger(obj) {
-    var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'logger';
+var moduleLogger = function moduleLogger() {
+    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'logger';
 
+    var obj = this;
     obj.getLogger = getLogger;
     obj.logger = getLogger();
     return {
@@ -2906,13 +2763,26 @@ var moduleLogger = function moduleLogger(obj) {
     };
 };
 
-exports.default = {
+var $ = {
     logger: getLogger(),
     getLogger: getLogger,
     moduleLogger: moduleLogger
 };
+
+if (typeof global !== 'undefined' && global) {
+    global.jm || (global.jm = {});
+    var jm = global.jm;
+    if (!jm.logger) {
+        for (var key in $) {
+            jm[key] = $[key];
+        }
+    }
+}
+
+exports.default = $;
 module.exports = exports['default'];
-},{}],22:[function(require,module,exports){
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2932,7 +2802,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var client = (0, _fnclient2.default)(_ws2.default);
 exports.default = client;
 module.exports = exports['default'];
-},{"../fnclient":25,"./ws":24}],23:[function(require,module,exports){
+},{"../fnclient":28,"./ws":27}],26:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -2978,7 +2848,7 @@ $.client = _client2.default;
 exports.default = $;
 module.exports = exports['default'];
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./client":22}],24:[function(require,module,exports){
+},{"./client":25}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2994,7 +2864,7 @@ exports.default = function (uri, onmessage) {
 };
 
 module.exports = exports["default"];
-},{}],25:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3143,59 +3013,14 @@ var fnclient = function fnclient(fnCreateWS) {
 
 exports.default = fnclient;
 module.exports = exports['default'];
-},{"jm-err":26,"jm-event":27,"jm-logger":28,"jm-ms-core/lib/utils":7}],26:[function(require,module,exports){
+},{"jm-err":29,"jm-event":32,"jm-logger":33,"jm-ms-core/lib/utils":7}],29:[function(require,module,exports){
 module.exports=require(8)
-},{}],27:[function(require,module,exports){
+},{"./locale":30}],30:[function(require,module,exports){
+module.exports=require(9)
+},{"./zh_CN":31}],31:[function(require,module,exports){
+module.exports=require(10)
+},{}],32:[function(require,module,exports){
 module.exports=require(2)
-},{}],28:[function(require,module,exports){
-(function (global){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-/**
- * logger module.
- * @module logger
- */
-
-var getLogger = function getLogger(loggerCategoryName) {
-    console.debug || (console.debug = console.log);
-    return console;
-};
-
-var moduleLogger = function moduleLogger() {
-    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'logger';
-
-    var obj = this;
-    obj.getLogger = getLogger;
-    obj.logger = getLogger();
-    return {
-        name: name,
-        unuse: function unuse() {
-            delete obj.logger;
-            delete obj.getLogger;
-        }
-    };
-};
-
-var $ = {
-    logger: getLogger(),
-    getLogger: getLogger,
-    moduleLogger: moduleLogger
-};
-
-if (typeof global !== 'undefined' && global) {
-    global.jm || (global.jm = {});
-    var jm = global.jm;
-    if (!jm.logger) {
-        for (var key in $) {
-            jm[key] = $[key];
-        }
-    }
-}
-
-exports.default = $;
-module.exports = exports['default'];
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],33:[function(require,module,exports){
+module.exports=require(24)
 },{}]},{},[1])
