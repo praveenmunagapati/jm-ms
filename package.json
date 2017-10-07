@@ -1,10 +1,9 @@
 {
   "name": "jm-ms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MicroService lib, light and fast",
   "main": "./lib/index",
   "scripts": {
-    "test": "node test"
   },
   "repository": {
     "type": "git",
@@ -24,7 +23,7 @@
   "homepage": "https://github.com/jm-root/jm-ms",
   "dependencies": {
     "jm-log4js": "^1.1.1",
-    "jm-ms-core": "^1.0.1",
+    "jm-ms-core": "^1.0.4",
     "jm-ms-http": "^1.0.1",
     "jm-ms-ws": "^1.0.0"
   },
