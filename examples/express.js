@@ -1,5 +1,5 @@
-var jm = require('jm-ms');
-var logger = jm.getLogger('test');
+require('../lib');
+var logger = console
 var express = require('express');
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -15,13 +15,13 @@ appWeb.set('trust proxy', true);
 var app = jm.ms();
 app
     .use(function (opts, cb, next) {
-        logger.debug('filter called. \n %s', JSON.stringify(opts, null, 2));
+        logger.info('filter called. \n %s', JSON.stringify(opts, null, 2));
         opts.data.sex = 'male';
         opts.abc = 123;
         next();
     })
     .add('/hello/:name', 'get', function (opts, cb) {
-        logger.debug('hello called. \n %s', JSON.stringify(opts, null, 2));
+        logger.info('hello called. \n %s', JSON.stringify(opts, null, 2));
         cb(null, { name: opts.params.name, age: opts.data.age});
     })
 ;
@@ -40,7 +40,7 @@ jm.ms
     }, function(err, doc){
         var client = doc;
         client.get('/hello/http', {age: 10}, function (err, doc) {
-            logger.debug('request /hello. get result: \n %s', JSON.stringify(doc, null, 2));
+            logger.info('request /hello. get result: \n %s', JSON.stringify(doc, null, 2));
         })
     })
     .client({
@@ -49,7 +49,7 @@ jm.ms
         var client = doc;
         client.on('open', function() {
             client.get('/hello/ws', {age: 10}, function (err, doc) {
-                logger.debug('request /hello. get result: \n %s', JSON.stringify(doc, null, 2));
+                logger.info('request /hello. get result: \n %s', JSON.stringify(doc, null, 2));
             })
         });
     });
